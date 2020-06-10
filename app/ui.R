@@ -16,7 +16,9 @@ shinyUI(fluidPage(
             ),
             dateRangeInput(
                 inputId = "date_range",
-                label = "Date Range"
+                label = "Date Range",
+                start = "2019-05-01",
+                end = "2020-06-10"
             )
         ),
 

@@ -1,9 +1,12 @@
 # Starter ggplot function
 
-plot_clicks <- function(ad_clicks, plot_type = "both"){
+plot_clicks <- function(ad_clicks, plot_type = "both", date_range){
     
     require(ggplot2)
     require(dplyr)
+    
+    start_date <- date_range[1]
+    end_date <- date_range[2]
     
     plot_expr <- switch(plot_type,
                         scatter = ggplot2::geom_point(size = 4),
@@ -13,6 +16,7 @@ plot_clicks <- function(ad_clicks, plot_type = "both"){
     )
     
     ad_clicks %>% 
+        filter(day > start_date, day < end_date) %>%
         dplyr::group_by(name, day) %>% 
         dplyr::summarise(clicks = sum(clicks)) %>% 
         dplyr::ungroup() %>% 
