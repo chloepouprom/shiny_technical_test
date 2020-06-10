@@ -14,7 +14,7 @@ shinyServer(function(input, output) {
     
     # Create plot output object
     output$plot <- renderPlot({
-        plot_clicks(ad_clicks)
+        plot_clicks(ad_clicks, plot_type = input$plot_type)
     })
 
 })
